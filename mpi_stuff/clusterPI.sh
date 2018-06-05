@@ -4,9 +4,8 @@
 #SBATCH --job-name=pi_omp
 #SBATCH --output=PI_omp.%j.out
 #SBATCH --error=PI_omp.%j.err
-#SBATCH --nodes=1 # number of nodes
 #SBATCH --tasks-per-node=1
-#SBATCH --time=00:10:00 # walltime
+#SBATCH --time=00:05:00 # walltime
 #SBATCH --exclusive
 
 #Good Idea to stop operation on first error.

@@ -25,7 +25,7 @@ int main (int argc, char* argv[]) {
 		exit(EXIT_FAILURE);
 	}
 
-		long inside = 0;
+		//long inside = 0;
 
 		#pragma omp parallel for num_threads(n_threads) reduction( + : sum )
 		for (long i = 0; i <= sample; i++) {
@@ -43,5 +43,5 @@ int main (int argc, char* argv[]) {
 
 	pi = (double) sum / sample * 4.0;
 	double error = (pi - M_PI) / M_PI;
-	//printf("rel_err= %f, sum= %ld, loops = %ld, pi = %f\n", error, sum, sample, pi);
+	printf("rel_err= %f, sum= %ld, loops = %ld, pi = %f\n", error, sum, sample, pi);
 }
