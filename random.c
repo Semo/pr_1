@@ -8,12 +8,14 @@
 #define RNG_MOD 16777216
 #endif
 
-int pr_random(void) {
+int pr_random(void)
+{
     static int state = 0;
 
     return (state = (RNG_MULTIPLIER * state + RNG_INCREMENT) % RNG_MOD);
 }
 
-double pr_random_f(double range) {
+double pr_random_f(double range)
+{
     return ((double) pr_random() / (double) RNG_MOD) * range;
 }
