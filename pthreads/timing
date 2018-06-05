@@ -1,0 +1,36 @@
+1:
+real 23.55
+user 23.55
+sys 0.00
+2:
+real 37.72
+user 69.64
+sys 0.00
+4:
+real 36.84
+user 130.14
+sys 0.00
+8:
+real 33.85
+user 246.89
+sys 0.00
+16:
+real 34.29
+user 533.18
+sys 0.00
+24:
+real 33.08
+user 787.08
+sys 0.00
+32:
+real 38.42
+user 1133.36
+sys 0.00
+48:
+real 45.18
+user 2064.36
+sys 0.00
+96:
+real 39.11
+user 1854.88
+sys 0.00
