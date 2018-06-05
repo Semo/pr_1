@@ -1,0 +1,23 @@
+ohne explizites Scheduling:
+real 3.06
+user 68.34
+sys 0.00
+rel_err= -0.001778, sum= 78400148, loops = 100000000, pi = 3.136006
+
+schedule(static):
+real 3.03
+user 68.52
+sys 0.00
+rel_err= -0.002229, sum= 78364737, loops = 100000000, pi = 3.134589
+
+schedule(dynamic):
+real 12.74
+user 305.87
+sys 0.00
+rel_err= -0.000631, sum= 78490283, loops = 100000000, pi = 3.139611
+
+schedule(guided):
+real 3.14
+user 74.94
+sys 0.00
+rel_err= -0.001412, sum= 78428945, loops = 100000000, pi = 3.137158
