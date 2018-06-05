@@ -53,3 +53,5 @@ dkms.conf
 
 #my stuff
 .idea/
+*.out
+*.err
