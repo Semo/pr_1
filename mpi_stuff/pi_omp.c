@@ -5,19 +5,25 @@
 #include <time.h>
 #include <math.h>
 
-double get_rand (void) {
-	srand(time(NULL));
-	double kram = ((double) rand() / RAND_MAX) * 2 - 1;
-	return kram;
-}
-
 int main (int argc, char* argv[]) {
 
 	double pi;
-	int n_threads = atoi(argv[1]);
-	long sample = atol(argv[2]);
 	long sum = 0;
 
+	if (argc != 3){ // Fehlerabfrage ob alle argumente existieren;
+		fprintf(stderr,"Usage: ./pi_omp <n_threads> <n_samples>\n");
+		exit(EXIT_FAILURE);
+	}
+	int n_threads = atoi(argv[1]); // Zuweisung des Parameter der die Anzahl der Threads bestimmt
+	if (n_threads < 1){//Abfangen ob möglich min 1
+		fprintf(stderr,"Bitte gebe eine höhere Zahl bei den Threads an");
+		exit(EXIT_FAILURE);
+	}
+	long sample = atol(argv[2]);//Zuweisung der Samples
+	if (sample < 2 * n_threads){//abfangen ob was sinvolles berechnet werden kann
+		fprintf(stderr,"Bitte gebe eine höhere Anzahl an n_samples an (min 2x n_threads)");
+		exit(EXIT_FAILURE);
+	}
 
 		long inside = 0;
 
@@ -37,6 +43,5 @@ int main (int argc, char* argv[]) {
 
 	pi = (double) sum / sample * 4.0;
 	double error = (pi - M_PI) / M_PI;
-	printf("rel_err= %f, sum= %ld, loops = %ld, pi = %f\n", error, sum, sample, pi);
+	//printf("rel_err= %f, sum= %ld, loops = %ld, pi = %f\n", error, sum, sample, pi);
 }
-
