@@ -20,8 +20,8 @@ int main (int argc, char* argv[]) {
 		exit(EXIT_FAILURE);
 	}
 	long sample = atol(argv[2]);//Zuweisung der Samples
-	if (sample < 2 * n_threads){//Abfangen, ob etwas Sinnvolles berechnet werden kann
-		fprintf(stderr,"Bitte gib eine höhere Anzahl an n_samples an (min 2x n_threads)\n");
+	if (sample < 0){//Abfangen, ob etwas Sinnvolles berechnet werden kann
+		fprintf(stderr,"Bitte gib eine natürliche Anzahl an Samples an!\n");
 		exit(EXIT_FAILURE);
 	}
 
