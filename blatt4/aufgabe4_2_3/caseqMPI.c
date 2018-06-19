@@ -120,13 +120,13 @@ int main(int argc, char** argv){
 			for(z = 0; z < world_size;z++){
 				if(z !=world_rank ){
 					MPI_RECIVE(next,(lines + 2) * sizeof(Line),MPI_CHARACTER,z,1,&status);
-					if(status == MPI_ERROR){
+					if(status.MPI_ERROR){
 						//TODO
 						MPI_Abort(MPI_COMM_WORLD,1);
 					}
 					
 					for (y = 1;  y <= (lines%world_size+lines/world_size);  y++) {
-						to[y*z] = next[y*z];
+						stpcpy(to[y*z],next[y*z]);
 					}
 					
 				}
@@ -145,7 +145,7 @@ int main(int argc, char** argv){
 		MPI_Status status;
 		for(i = 0;  i < its;  i++){
 			MPI_RECIVE(from,(lines + 2) * sizeof(Line),MPI_CHARACTER,0,0,&status);
-			if(status == MPI_ERROR){
+			if(status.MPI_ERROR){
 				MPI_Abort(MPI_COMM_WORLD,2);
 			}
 			for (y = 1;  y <= (lines%world_size+lines/world_size);  y++) {
