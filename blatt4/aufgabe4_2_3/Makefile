@@ -1,5 +1,5 @@
 CC=gcc
-CFLAGS=-O2 -fopenmp
+CFLAGS=-O2 -fopenmp -Wimplicit-function-declaration
 LDFLAGS=-lcrypto
 
 .PHONY: clean
@@ -11,7 +11,7 @@ caseq: caseq.c random.c md5tool.c
 	
 	
 caseqMPI: caseqMPI.c random.c md5tool.c
-	$(CC) $(CFLAGS) $^ $(LDFLAGS) -o $@
+	mpicc $(CFLAGS) $^ $(LDFLAGS) -o $@
 
 clean:
 	rm -rf *.o

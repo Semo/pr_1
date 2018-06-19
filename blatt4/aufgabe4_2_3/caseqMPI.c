@@ -104,11 +104,11 @@ int main(int argc, char** argv){
     int world_rank;
     MPI_Comm_rank(MPI_COMM_WORLD, &world_rank);
 	
-	if(rank == 0){
+	if(world_rank == 0){ 
+		int y;
 		next = malloc((lines + 2) * sizeof(Line));
 		initConfig(from, lines);
 		for (i = 0;  i < its;  i++) {
-			int x,y;
 			boundary(from, lines);
 			int z;
 			for(z = 0; z < world_size;z++){
@@ -141,7 +141,7 @@ int main(int argc, char** argv){
 	printf("hash: %s\n", hash);
 		free(next);
 	}else{
-		
+		int x,y;
 		MPI_Status status;
 		for(i = 0;  i < its;  i++){
 			MPI_RECIVE(from,(lines + 2) * sizeof(Line),MPI_CHARACTER,0,0,&status);
@@ -153,7 +153,7 @@ int main(int argc, char** argv){
 					to[y*world_rank][x  ] = transition(from, x  , y*world_rank);
 				}
 			}
-			MPI_SEND(to,(lines + 2) * sizeof(Line),MPI_CHARACTER,0,1,MPI_COMM_WORLD)
+			MPI_SEND(to,(lines + 2) * sizeof(Line),MPI_CHARACTER,0,1,MPI_COMM_WORLD);
 			
 		}
 		
