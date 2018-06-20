@@ -113,13 +113,13 @@ int main(int argc, char** argv){
 			int z;
 			for(z = 0; z < world_size;z++){
 				if(z !=world_rank ){
-					MPI_SEND(from,(lines + 2) * sizeof(Line),MPI_CHARACTER,z,0,MPI_COMM_WORLD);
+					MPI_Send(from,(lines + 2) * sizeof(Line),MPI_CHARACTER,z,0,MPI_COMM_WORLD);
 				}
 			}
 			MPI_Status status;
 			for(z = 0; z < world_size;z++){
 				if(z !=world_rank ){
-					MPI_RECIVE(next,(lines + 2) * sizeof(Line),MPI_CHARACTER,z,1,&status);
+					MPI_Recv(next,(lines + 2) * sizeof(Line),MPI_CHARACTER,z,1,MPI_COMM_WORLD,&status);
 					if(status.MPI_ERROR){
 						//TODO
 						MPI_Abort(MPI_COMM_WORLD,1);
@@ -144,7 +144,7 @@ int main(int argc, char** argv){
 		int x,y;
 		MPI_Status status;
 		for(i = 0;  i < its;  i++){
-			MPI_RECIVE(from,(lines + 2) * sizeof(Line),MPI_CHARACTER,0,0,&status);
+			MPI_Recv(from,(lines + 2) * sizeof(Line),MPI_CHARACTER,0,0,MPI_COMM_WORLD,&status);
 			if(status.MPI_ERROR){
 				MPI_Abort(MPI_COMM_WORLD,2);
 			}
@@ -153,7 +153,7 @@ int main(int argc, char** argv){
 					to[y*world_rank][x  ] = transition(from, x  , y*world_rank);
 				}
 			}
-			MPI_SEND(to,(lines + 2) * sizeof(Line),MPI_CHARACTER,0,1,MPI_COMM_WORLD);
+			MPI_Send(to,(lines + 2) * sizeof(Line),MPI_CHARACTER,0,1,MPI_COMM_WORLD);
 			
 		}
 		

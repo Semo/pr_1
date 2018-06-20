@@ -1,5 +1,5 @@
 CC=gcc
-CFLAGS=-O2 -fopenmp -Wimplicit-function-declaration
+CFLAGS=-O2 -fopenmp
 LDFLAGS=-lcrypto
 
 .PHONY: clean
